@@ -11,6 +11,9 @@ function Home() {
   function crearPartida(nuevaPartida) {
     setPartidas([...partidas, nuevaPartida]);
   }
+  function eliminarPartida(id) {
+  setPartidas(partidas.filter((partida) => partida.id !== id));
+  }
 
   // 👇 Aquí mismo
   useEffect(() => {
@@ -29,9 +32,10 @@ function Home() {
         <p>No tienes partidas.</p>
       ) : (
         partidas.map((partida) => (
-          <CareerCard
+                  <CareerCard
             key={partida.id}
             partida={partida}
+            onDelete={eliminarPartida}
           />
         ))
       )}
