@@ -1,13 +1,21 @@
-import CareerCard from "../components/CareerCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CareerForm from "../components/CareerForm";
+import CareerCard from "../components/CareerCard";
 
 function Home() {
-  const [partidas, setPartidas] = useState([]);
+  const [partidas, setPartidas] = useState(() => {
+    const guardadas = localStorage.getItem("partidas");
+    return guardadas ? JSON.parse(guardadas) : [];
+  });
 
   function crearPartida(nuevaPartida) {
     setPartidas([...partidas, nuevaPartida]);
   }
+
+  // 👇 Aquí mismo
+  useEffect(() => {
+    localStorage.setItem("partidas", JSON.stringify(partidas));
+  }, [partidas]);
 
   return (
     <main className="content">
@@ -20,11 +28,11 @@ function Home() {
       {partidas.length === 0 ? (
         <p>No tienes partidas.</p>
       ) : (
-            partidas.map((partida) => (
-        <CareerCard
+        partidas.map((partida) => (
+          <CareerCard
             key={partida.id}
             partida={partida}
-        />
+          />
         ))
       )}
     </main>
