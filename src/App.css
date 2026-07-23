@@ -81,3 +81,18 @@ button:hover {
 .secondary:hover {
   background: #777;
 }
+.careerCard {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.08);
+}
+
+.careerCard h3 {
+  margin-top: 0;
+}
+
+.careerCard button {
+  margin-right: 10px;
+}
